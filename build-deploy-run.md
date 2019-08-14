@@ -3,14 +3,8 @@
 ### 软件下载及准备
 ```
 cd /home
-yum update
-yum install -y git  wget
-git clone https://github.com/JeffyLiu003/HouseApp.git
-wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
-tar zxf apache-maven-3.6.0-bin.tar.gz
-tar zxf jdk-8u191-linux-x64.tar.gz
-export PATH=$PATH:/home/apache-maven-3.6.0/bin:/home/jdk1.8.0_191/bin
+yum update -y
+yum install -y git mvn java
 mvn -v 
 java -version
 ```
