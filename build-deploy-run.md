@@ -2,7 +2,6 @@
 ## 本地开发环境上 Build/Deploy
 ### 软件下载及准备
 ```
-cd /home
 yum update -y
 yum install -y git mvn java
 mvn -v 
