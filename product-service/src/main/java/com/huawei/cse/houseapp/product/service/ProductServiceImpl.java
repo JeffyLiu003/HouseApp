@@ -129,8 +129,21 @@ public class ProductServiceImpl implements ProductService {
                 e.printStackTrace();
             }
         }
-
-        return productMapper.getAllProducts();
+        
+        List<ProductInfo> products = productMapper.getAllProducts();
+        int reservedCount = 0;
+        for (ProductInfo p : products) {
+        	if (p.isSold()) {
+        		reservedCount ++;
+        	}
+        }
+        
+        ProductInfo stat = new ProductInfo();
+        stat.setId(1000000);
+        stat.setReservedUserId(reservedCount);
+        
+        products.add(stat);
+        return products;
     }
 
     @Override

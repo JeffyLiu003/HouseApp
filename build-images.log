@@ -1,0 +1,413 @@
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM 100.125.0.198:20202/hwcse/dockerhub-java:8-jre-alpine
+Trying to pull repository 100.125.0.198:20202/hwcse/dockerhub-java ... 
+Get https://100.125.0.198:20202/v1/_ping: dial tcp 100.125.0.198:20202: i/o timeout
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM 100.125.0.198:20202/hwcse/dockerhub-java:8-jre-alpine
+Trying to pull repository 100.125.0.198:20202/hwcse/dockerhub-java ... 
+Get https://100.125.0.198:20202/v1/_ping: dial tcp 100.125.0.198:20202: i/o timeout
+Sending build context to Docker daemon 528.7 MB
+Step 1/4 : FROM 100.125.0.198:20202/hwcse/dockerhub-java:8-jre-alpine
+Trying to pull repository 100.125.0.198:20202/hwcse/dockerhub-java ... 
+Get https://100.125.0.198:20202/v1/_ping: dial tcp 100.125.0.198:20202: i/o timeout
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM 100.125.0.198:20202/hwcse/dockerhub-java:8-jre-alpine
+Trying to pull repository 100.125.0.198:20202/hwcse/dockerhub-java ... 
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+Trying to pull repository swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java ... 
+8-jre-alpine: Pulling from swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java
+53478ce18e19: Pulling fs layer
+d1c225ed7c34: Pulling fs layer
+c6724ba0c09a: Pulling fs layer
+d1c225ed7c34: Verifying Checksum
+d1c225ed7c34: Download complete
+53478ce18e19: Verifying Checksum
+53478ce18e19: Download complete
+c6724ba0c09a: Verifying Checksum
+c6724ba0c09a: Download complete
+53478ce18e19: Pull complete
+d1c225ed7c34: Pull complete
+c6724ba0c09a: Pull complete
+Digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5ef5
+Status: Downloaded newer image for swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Running in 4b27883d91ef
+
+[91m[0m ---> d98e344f777c
+Removing intermediate container 4b27883d91ef
+Step 3/5 : COPY ./account-service/target/account-service-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> 71da822ff3ca
+Removing intermediate container ca2a2af27612
+Step 4/5 : COPY ./account-service/target/lib/ /home/apps/server/lib
+ ---> a6da607757aa
+Removing intermediate container 45e5c419c169
+Step 5/5 : ENTRYPOINT java -Ddb.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME} -Ddb.username=${DB_USERNAME} -Ddb.password=${DB_PASSWD} -Dcse.tcc.transaction.redis.host=${TCC_REDIS_HOST} -Dcse.tcc.transaction.redis.port=${TCC_REDIS_PORT} -Dcse.tcc.transaction.redis.password=${TCC_REDIS_PASSWD} -jar /home/apps/server/account-service-0.0.1-SNAPSHOT.jar
+ ---> Running in 2db00d236cc4
+ ---> 7f647a8a9185
+Removing intermediate container 2db00d236cc4
+Successfully built 7f647a8a9185
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/5 : COPY ./customer-service/target/customer-service-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> ae818d51dc36
+Removing intermediate container 159aa2f84fdb
+Step 4/5 : COPY ./customer-service/target/lib/ /home/apps/server/lib
+ ---> 9d3c8fc42208
+Removing intermediate container b79fd392210b
+Step 5/5 : ENTRYPOINT java -Dcse.tcc.transaction.redis.host=${TCC_REDIS_HOST} -Dcse.tcc.transaction.redis.port=${TCC_REDIS_PORT} -Dcse.tcc.transaction.redis.password=${TCC_REDIS_PASSWD} -jar /home/apps/server/customer-service-0.0.1-SNAPSHOT.jar
+ ---> Running in d21b0a46084c
+ ---> ad0101d82305
+Removing intermediate container d21b0a46084c
+Successfully built ad0101d82305
+Sending build context to Docker daemon 528.7 MB
+Step 1/4 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/4 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/4 : COPY ./customer-website/target/customer-website-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> 44d194883620
+Removing intermediate container 12c9612bc15b
+Step 4/4 : ENTRYPOINT java -Dcse.tcc.transaction.redis.host=${TCC_REDIS_HOST} -Dcse.tcc.transaction.redis.port=${TCC_REDIS_PORT} -Dcse.tcc.transaction.redis.password=${TCC_REDIS_PASSWD} -jar /home/apps/server/customer-website-0.0.1-SNAPSHOT.jar
+ ---> Running in 725a8b0a0bf1
+ ---> d68de6ea46e7
+Removing intermediate container 725a8b0a0bf1
+Successfully built d68de6ea46e7
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/5 : COPY ./edge-service/target/edge-service-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> fd2d8581e8d4
+Removing intermediate container 6a7b8c5af425
+Step 4/5 : COPY ./edge-service/target/lib/ /home/apps/server/lib
+ ---> d90ce58ccc8a
+Removing intermediate container c8f9b365b50f
+Step 5/5 : ENTRYPOINT java -jar /home/apps/server/edge-service-0.0.1-SNAPSHOT.jar
+ ---> Running in 3a1babc21b30
+ ---> 4f89cbfb0fd7
+Removing intermediate container 3a1babc21b30
+Successfully built 4f89cbfb0fd7
+Sending build context to Docker daemon 528.7 MB
+Step 1/6 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/mysqlutf8:0.2
+Trying to pull repository swr.ap-southeast-1.myhuaweicloud.com/paas-poc/mysqlutf8 ... 
+0.2: Pulling from swr.ap-southeast-1.myhuaweicloud.com/paas-poc/mysqlutf8
+85b1f47fba49: Pulling fs layer
+27dc53f13a11: Pulling fs layer
+095c8ae4182d: Pulling fs layer
+0972f6b9a7de: Pulling fs layer
+c3ae57f3d01d: Pulling fs layer
+b72384e45075: Pulling fs layer
+6cf214e4570f: Pulling fs layer
+d19d2b4b74fe: Pulling fs layer
+81272c77039d: Pulling fs layer
+deab12c58eae: Pulling fs layer
+d0830a21cf35: Pulling fs layer
+2a5e86d1f54f: Pulling fs layer
+0972f6b9a7de: Waiting
+c3ae57f3d01d: Waiting
+b72384e45075: Waiting
+6cf214e4570f: Waiting
+d19d2b4b74fe: Waiting
+81272c77039d: Waiting
+deab12c58eae: Waiting
+d0830a21cf35: Waiting
+2a5e86d1f54f: Waiting
+27dc53f13a11: Verifying Checksum
+27dc53f13a11: Download complete
+0972f6b9a7de: Verifying Checksum
+0972f6b9a7de: Download complete
+095c8ae4182d: Verifying Checksum
+095c8ae4182d: Download complete
+b72384e45075: Verifying Checksum
+b72384e45075: Download complete
+85b1f47fba49: Download complete
+c3ae57f3d01d: Verifying Checksum
+c3ae57f3d01d: Download complete
+d19d2b4b74fe: Verifying Checksum
+d19d2b4b74fe: Download complete
+deab12c58eae: Verifying Checksum
+deab12c58eae: Download complete
+d0830a21cf35: Verifying Checksum
+d0830a21cf35: Download complete
+2a5e86d1f54f: Verifying Checksum
+2a5e86d1f54f: Download complete
+6cf214e4570f: Verifying Checksum
+6cf214e4570f: Download complete
+81272c77039d: Verifying Checksum
+81272c77039d: Download complete
+85b1f47fba49: Pull complete
+27dc53f13a11: Pull complete
+095c8ae4182d: Pull complete
+0972f6b9a7de: Pull complete
+c3ae57f3d01d: Pull complete
+b72384e45075: Pull complete
+6cf214e4570f: Pull complete
+d19d2b4b74fe: Pull complete
+81272c77039d: Pull complete
+deab12c58eae: Pull complete
+d0830a21cf35: Pull complete
+2a5e86d1f54f: Pull complete
+Digest: sha256:c41b17429c51dda3df0e333e2ffe90cffcb2262cfc84e4349744a5124415d954
+Status: Downloaded newer image for swr.ap-southeast-1.myhuaweicloud.com/paas-poc/mysqlutf8:0.2
+ ---> 408e6c4953ec
+Step 2/6 : COPY ./init-db/target/sql /sql
+ ---> f1b9562856e3
+Removing intermediate container e7ae1b64600d
+Step 3/6 : COPY ./init-db/target/entrypoint.sh /
+ ---> 04c055f2feb8
+Removing intermediate container 1cd2d47fcd49
+Step 4/6 : RUN chmod +x /entrypoint.sh
+ ---> Running in ca1e5be6ea16
+
+[91m[0m ---> 1c62c7d4e6d0
+Removing intermediate container ca1e5be6ea16
+Step 5/6 : ENTRYPOINT ./entrypoint.sh
+ ---> Running in 62e1c48f71c7
+ ---> 939ace744b5d
+Removing intermediate container 62e1c48f71c7
+Step 6/6 : CMD --help
+ ---> Running in 8ff4eb1e07c1
+ ---> 90030b6ab871
+Removing intermediate container 8ff4eb1e07c1
+Successfully built 90030b6ab871
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/5 : COPY ./loadtestclient/target/loadtestclient-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> 070dd5ada6f6
+Removing intermediate container eab0e6ed4800
+Step 4/5 : COPY ./loadtestclient/target/lib/ /home/apps/server/lib
+ ---> 85fc03d837d2
+Removing intermediate container 4db1865f4b37
+Step 5/5 : ENTRYPOINT java -jar /home/apps/server/loadtestclient-0.0.1-SNAPSHOT.jar
+ ---> Running in 134a462387fd
+ ---> 731b72f42d30
+Removing intermediate container 134a462387fd
+Successfully built 731b72f42d30
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/5 : COPY ./product-service/target/product-service-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> 33a9f55a8721
+Removing intermediate container 4ac6e839646e
+Step 4/5 : COPY ./product-service/target/lib/ /home/apps/server/lib
+ ---> bcbb7d29f612
+Removing intermediate container eba7b636e022
+Step 5/5 : ENTRYPOINT java -Ddb.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME} -Ddb.username=${DB_USERNAME} -Ddb.password=${DB_PASSWD} -Dcse.tcc.transaction.redis.host=${TCC_REDIS_HOST} -Dcse.tcc.transaction.redis.port=${TCC_REDIS_PORT} -Dcse.tcc.transaction.redis.password=${TCC_REDIS_PASSWD} -Dcse.tcc.transaction.repository=com.huawei.paas.cse.tcc.repository.RedisTransactionRepository -jar /home/apps/server/product-service-0.0.1-SNAPSHOT.jar
+ ---> Running in 1e9a3bcdd755
+ ---> 4ce6f91302db
+Removing intermediate container 1e9a3bcdd755
+Successfully built 4ce6f91302db
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/5 : COPY ./tx-coordinator/target/tx-coordinator-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> 375663a0330d
+Removing intermediate container f1296b32e10a
+Step 4/5 : COPY ./tx-coordinator/target/lib/ /home/apps/server/lib
+ ---> f37ed3ad61f6
+Removing intermediate container 2d6981c70e3a
+Step 5/5 : ENTRYPOINT java -jar /home/apps/server/tx-coordinator-0.0.1-SNAPSHOT.jar
+ ---> Running in d455277f0ef3
+ ---> d0cedafe7d79
+Removing intermediate container d455277f0ef3
+Successfully built d0cedafe7d79
+Sending build context to Docker daemon 528.7 MB
+Step 1/5 : FROM swr.ap-southeast-1.myhuaweicloud.com/paas-poc/dockerhub-java:8-jre-alpine
+ ---> fdc893b19a14
+Step 2/5 : RUN mkdir -p /home/apps/server
+ ---> Using cache
+ ---> d98e344f777c
+Step 3/5 : COPY ./user-service/target/user-service-0.0.1-SNAPSHOT.jar /home/apps/server
+ ---> 40de443cbace
+Removing intermediate container ac6cf55b77c6
+Step 4/5 : COPY ./user-service/target/lib/ /home/apps/server/lib
+ ---> 68c59056a552
+Removing intermediate container b3e4327d9673
+Step 5/5 : ENTRYPOINT java -Ddb.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME} -Ddb.username=${DB_USERNAME} -Ddb.password=${DB_PASSWD} -Dcse.tcc.transaction.redis.host=${TCC_REDIS_HOST} -Dcse.tcc.transaction.redis.port=${TCC_REDIS_PORT} -Dcse.tcc.transaction.redis.password=${TCC_REDIS_PASSWD} -jar /home/apps/server/user-service-0.0.1-SNAPSHOT.jar
+ ---> Running in 72a7c4322f90
+ ---> b003898b1249
+Removing intermediate container 72a7c4322f90
+Successfully built b003898b1249
+The push refers to a repository [100.125.0.42:20202/paas-poc/account-service]
+Get https://100.125.0.42:20202/v1/_ping: dial tcp 100.125.0.42:20202: i/o timeout
+The push refers to a repository [100.125.0.42:20202/paas-poc/customer-service]
+Get https://100.125.0.42:20202/v1/_ping: dial tcp 100.125.0.42:20202: i/o timeout
+The push refers to a repository [100.125.0.42:20202/paas-poc/customer-website]
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/account-service]
+03eb58870837: Preparing
+9dfb05049aaa: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+78075328e0da: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+9dfb05049aaa: Pushed
+3ea78ba40e18: Pushed
+03eb58870837: Pushed
+20190813-hk: digest: sha256:935220547e067d28a7f250accfe678f7ffa9e70c54a8932e11a5cafcb77ad386 size: 1575
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/customer-service]
+714489478b65: Preparing
+3d5259c77f30: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+78075328e0da: Layer already exists
+3ea78ba40e18: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+3d5259c77f30: Pushed
+714489478b65: Pushed
+20190813-hk: digest: sha256:47ecb5168b17dc3b8a79e43443ef6b2d9ca84a58f6b857fa20c3a7d186a78900 size: 1574
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/customer-website]
+1ac47488af36: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+78075328e0da: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+3ea78ba40e18: Layer already exists
+1ac47488af36: Pushed
+20190813-hk: digest: sha256:5136fc8b548aeb2c5ba8e4589944022bbcfa1f7008fb044bbbad6d1ada34e85c size: 1366
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/edge-service]
+ba606a889647: Preparing
+e2f25fa806ef: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+78075328e0da: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+3ea78ba40e18: Layer already exists
+e2f25fa806ef: Pushed
+ba606a889647: Pushed
+20190813-hk: digest: sha256:662c6995ae92a6c5de858567dbedf4246ee3491842abefe773e5922bd1a6c9a2 size: 1575
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/init-db]
+8d66413c3ac3: Preparing
+6aa5fafe1efa: Preparing
+6a62968ff70f: Preparing
+72126afdb541: Preparing
+8ab099d7816a: Preparing
+7bebe0c423b0: Preparing
+e564f59291e0: Preparing
+177e016ea1e7: Preparing
+258da783d060: Preparing
+7f39b97fc8d8: Preparing
+ab7d12640782: Preparing
+5efbfe22b385: Preparing
+61b642d465e3: Preparing
+43f0d9f27e08: Preparing
+c01c63c6823d: Preparing
+7bebe0c423b0: Waiting
+e564f59291e0: Waiting
+177e016ea1e7: Waiting
+258da783d060: Waiting
+7f39b97fc8d8: Waiting
+ab7d12640782: Waiting
+5efbfe22b385: Waiting
+61b642d465e3: Waiting
+43f0d9f27e08: Waiting
+c01c63c6823d: Waiting
+72126afdb541: Layer already exists
+8ab099d7816a: Layer already exists
+e564f59291e0: Layer already exists
+177e016ea1e7: Layer already exists
+258da783d060: Layer already exists
+7bebe0c423b0: Layer already exists
+7f39b97fc8d8: Layer already exists
+5efbfe22b385: Layer already exists
+ab7d12640782: Layer already exists
+61b642d465e3: Layer already exists
+43f0d9f27e08: Layer already exists
+c01c63c6823d: Layer already exists
+8d66413c3ac3: Pushed
+6a62968ff70f: Pushed
+6aa5fafe1efa: Pushed
+20190813-hk: digest: sha256:d267e2bf75bdf893b68776622ca0c499b48b70e00c0e7755aeef975c6cb0a171 size: 3445
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/loadtestclient]
+afb9a750126b: Preparing
+cf55dccd0eb8: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+78075328e0da: Layer already exists
+3ea78ba40e18: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+cf55dccd0eb8: Pushed
+afb9a750126b: Pushed
+20190813-hk: digest: sha256:966228a673b9f79ef1850d2dfffe2703ba761b00cde41070e4ad5fa17b8e3c5a size: 1574
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/product-service]
+4d3e1e1d6cbd: Preparing
+da8c82514a5c: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+3ea78ba40e18: Layer already exists
+78075328e0da: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+da8c82514a5c: Pushed
+4d3e1e1d6cbd: Pushed
+20190813-hk: digest: sha256:38598f958c896b9fdd4426f80660e0cf65c135b56155b5c3dae141b36ef2f5f8 size: 1575
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/tx-coordinator]
+4bdeb619ad67: Preparing
+73e0c2b0379f: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+78075328e0da: Layer already exists
+3ea78ba40e18: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+73e0c2b0379f: Pushed
+4bdeb619ad67: Pushed
+20190813-hk: digest: sha256:70b0af637bb0ed51fd10304ec5c47dd3d5edfa39fca61cb4269fb4ad92acfe4f size: 1574
+The push refers to a repository [swr.ap-southeast-1.myhuaweicloud.com/paas-poc/user-service]
+1aae19317d16: Preparing
+8139ad255399: Preparing
+3ea78ba40e18: Preparing
+20dd87a4c2ab: Preparing
+78075328e0da: Preparing
+9f8566ee5135: Preparing
+9f8566ee5135: Waiting
+78075328e0da: Layer already exists
+3ea78ba40e18: Layer already exists
+20dd87a4c2ab: Layer already exists
+9f8566ee5135: Layer already exists
+8139ad255399: Pushed
+1aae19317d16: Pushed
+20190813-hk: digest: sha256:d0bc1f41c5e1817b2d4b154af966d14d02c652643271fde240e9a38e3475af0c size: 1575
